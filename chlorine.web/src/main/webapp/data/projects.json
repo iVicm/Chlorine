@@ -1,0 +1,8 @@
+{
+    success: true,
+    projects:[
+        {id: '1', name: 'Personal Archive'},
+        {id: '2', name: 'Manage'},
+        {id: '3', name: 'Discovery Archive'}
+    ]
+}
