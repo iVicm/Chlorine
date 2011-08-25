@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="chlorine.web:war exploded">
-    <output-path>$PROJECT_DIR$/target/chlorine.web-1.0-SNAPSHOT</output-path>
+    <output-path>$PROJECT_DIR$/target/chlorine.web-0.1</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="chlorine.web/web/Web" />
       <element id="directory" name="WEB-INF">
@@ -57,6 +57,7 @@
           <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.8.4" />
           <element id="library" level="project" name="Maven: org.easytesting:fest-assert:1.4" />
           <element id="library" level="project" name="Maven: org.easytesting:fest-util:1.1.6" />
+          <element id="library" level="project" name="Maven: org.glashfish.extras:glassfish-embedded-all:3.1.1" />
         </element>
       </element>
     </root>

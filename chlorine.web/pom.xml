@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.chlorine</groupId>
-	<version>1.0-SNAPSHOT</version>
+	<version>0.1</version>
 	<name>chlorine.web</name>
 	<artifactId>chlorine.web</artifactId>
 	<packaging>war</packaging>
@@ -197,14 +197,29 @@
             <version>1.0.11</version>
         </dependency>
 
+        <!-- embedded glassfish -->
+        <dependency>
+            <groupId>org.glashfish.extras</groupId>
+            <artifactId>glassfish-embedded-all</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+
 	</dependencies>
 
 
 	<pluginRepositories>
-		<pluginRepository>
+
+        <pluginRepository>
 			<id>DataNucleus_2</id>
 			<url>http://www.datanucleus.org/downloads/maven2/</url>
 		</pluginRepository>
+
+        <pluginRepository>
+            <id>maven.java.net</id>
+            <name>Java.net Maven2 Repository</name>
+            <url>http://download.java.net/maven/2</url>
+        </pluginRepository>
+
 	</pluginRepositories>
 
 	<build>
@@ -303,6 +318,170 @@
 					</execution>
 				</executions>
 			</plugin>
+
+            <!-- Glassfish plugin -->
+<plugin>
+                <groupId>org.glassfish.maven.plugin</groupId>
+                <artifactId>maven-glassfish-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <glassfishDirectory>${glassfish.home}</glassfishDirectory>
+                    <!-- <user>${domain.username}</user>
+                    <adminPassword>${domain.password}</adminPassword>
+                    <passFile>path/to/asadmin/passfile</passFile> -->
+                    <autoCreate>true</autoCreate>
+                    <debug>true</debug>
+                    <echo>false</echo>
+                    <terse>true</terse>
+                    <!-- <skip>${test.int.skip}</skip> -->
+                    <domain>
+                        <name>${project.artifactId}</name>
+                        <adminPort>4848</adminPort>
+                        <httpPort>8080</httpPort>
+                        <httpsPort>8443</httpsPort>
+                        <iiopPort>3700</iiopPort>
+                        <jmsPort>7676</jmsPort>
+                        <reuse>false</reuse>
+                        <jvmOptions>
+                            <option>-Djava.security.auth.login.config=${project.build.testOutputDirectory}/login.conf</option>
+                        </jvmOptions>
+                        <properties>
+                            <property>
+                                <name>server.log-service.file</name>
+                                <value>${domain.log.dir}/server.log</value>
+                            </property>
+                        </properties>
+                        <auth>
+                            <realm>
+                                <name>testRealm</name>
+                                <className>com.sun.enterprise.security.auth.realm.file.FileRealm</className>
+                                <properties>
+                                    <property>
+                                        <name>jaas-context</name>
+                                        <value>test</value>
+                                    </property>
+                                    <property>
+                                        <name>file</name>
+                                        <value>${project.build.outputDirectory}/keyfile</value>
+                                    </property>
+                                </properties>
+                            </realm>
+                        </auth>
+                        <!-- <resourceDescriptor>path/to/resources.xml</resourceDescriptor> -->
+                        <resources>
+                            <connectionFactory>
+                                <jndiName>jms/testQueueConnectionFactory</jndiName>
+                                <type>queueConnectionFactory</type>
+                                <properties>
+                                    <property>
+                                        <name>UserName</name>
+                                        <value>guest</value>
+                                    </property>
+                                    <property>
+                                        <name>Password</name>
+                                        <value>guest</value>
+                                    </property>
+                                    <property>
+                                        <name>AddressList</name>
+                                        <value>localhost:7676</value>
+                                    </property>
+                                </properties>
+                            </connectionFactory>
+                            <jmsTopic>
+                                <jndiName>jms/testTopic</jndiName>
+                                <destinationName>TestTopic</destinationName>
+                                <connectionFactory>
+                                    <jndiName>jms/testTopicConnectionFactory</jndiName>
+                                    <properties>
+                                        <property>
+                                            <name>UserName</name>
+                                            <value>guest</value>
+                                        </property>
+                                        <property>
+                                            <name>Password</name>
+                                            <value>guest</value>
+                                        </property>
+                                        <property>
+                                            <name>AddressList</name>
+                                            <value>localhost:7676</value>
+                                        </property>
+                                    </properties>
+                                </connectionFactory>
+                            </jmsTopic>
+                            <jdbcDataSource>
+                                <name>SomeDS</name>
+                                <type>connectionPoolDataSource</type>
+                                <poolName>SomePool</poolName>
+                                <className>com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource</className>
+                                <description>Some JDBC Connection Pool</description>
+                                <allowNonComponentCallers>false</allowNonComponentCallers>
+                                <validateConnections>true</validateConnections>
+                                <validationMethod>metaData</validationMethod>
+                                <properties>
+                                    <property>
+                                        <name>portNumber</name>
+                                        <value>3306</value>
+                                    </property>
+                                    <property>
+                                        <name>password</name>
+                                        <value>somePassword</value>
+                                    </property>
+                                    <property>
+                                        <name>user</name>
+                                        <value>someUser</value>
+                                    </property>
+                                    <property>
+                                        <name>serverName</name>
+                                        <value>some.host.somewhere</value>
+                                    </property>
+                                    <property>
+                                        <name>databaseName</name>
+                                        <value>SomeDB</value>
+                                    </property>
+                                </properties>
+                            </jdbcDataSource>
+                        </resources>
+                    </domain>
+                    <components>
+                        <component>
+                            <name>${project.artifactId}</name>
+                            <artifact>${project.build.directory}/artifacts/${project.build.finalName}.war</artifact>
+                        </component>
+                    </components>
+                </configuration>
+            </plugin>
+
+            <!-- Jetty plugin -->
+            <plugin>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>maven-jetty-plugin</artifactId>
+                    <version>6.1.10</version>
+                    <configuration>
+                            <scanIntervalSeconds>10</scanIntervalSeconds>
+                            <stopKey>foo</stopKey>
+                            <stopPort>9999</stopPort>
+                    </configuration>
+                    <executions>
+                            <execution>
+                                    <id>start-jetty</id>
+                                    <phase>pre-integration-test</phase>
+                                    <goals>
+                                            <goal>run</goal>
+                                    </goals>
+                                    <configuration>
+                                            <scanIntervalSeconds>0</scanIntervalSeconds>
+                                            <daemon>true</daemon>
+                                    </configuration>
+                            </execution>
+                            <execution>
+                                    <id>stop-jetty</id>
+                                    <phase>post-integration-test</phase>
+                                    <goals>
+                                            <goal>stop</goal>
+                                    </goals>
+                            </execution>
+                    </executions>
+            </plugin>
 
 		</plugins>
 	</build>
