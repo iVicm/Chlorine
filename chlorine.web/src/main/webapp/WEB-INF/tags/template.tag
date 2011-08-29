@@ -5,17 +5,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-	<title>Database.com App: chlorine.web</title>
+	<title>Chlorine</title>
 	<link href="${pageContext.request.contextPath}/resources/layout.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/extjs/resources/css/ext-all.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/extjs/ext-all-debug.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/app.js"></script>
 </head>
 <body>
-	<div id="header"><div id="app_title">chlorine.web</div></div>
-	<div id="navigation">${breadcrumb}</div>
-	<div id="content">
-	
 		<jsp:doBody/>
-	
-	</div>
-	<div id="footer"></div>
 </body>
 </html>

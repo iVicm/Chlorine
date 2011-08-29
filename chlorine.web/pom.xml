@@ -152,24 +152,22 @@
 			<version>${org.aspectj-version}</version>
 		</dependency>
 
-		<!-- Database.com -->
+		<!-- DB -->
 
 		<dependency>
-			<groupId>com.force.sdk</groupId>
-			<artifactId>force-jpa</artifactId>
-			<version>${force.sdk.version}</version>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.6</version>
 		</dependency>
 		<dependency>
-			<groupId>org.datanucleus</groupId>
-			<artifactId>datanucleus-core</artifactId>
-			<version>2.2.3</version>
-			<scope>runtime</scope>
+			<groupId>org.hibernate.java-persistence</groupId>
+			<artifactId>jpa-api</artifactId>
+			<version>2.0-cr-1</version>
 		</dependency>
 		<dependency>
-			<groupId>org.datanucleus</groupId>
-			<artifactId>datanucleus-jpa</artifactId>
-			<version>2.1.7</version>
-			<scope>runtime</scope>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>3.5.1-Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -196,23 +194,29 @@
             <artifactId>extdirectspring</artifactId>
             <version>1.0.11</version>
         </dependency>
-
-        <!-- embedded glassfish -->
         <dependency>
-            <groupId>org.glashfish.extras</groupId>
-            <artifactId>glassfish-embedded-all</artifactId>
-            <version>3.1.1</version>
+          <groupId>commons-fileupload</groupId>
+          <artifactId>commons-fileupload</artifactId>
+          <version>1.2.2</version>
+        </dependency>
+
+        <dependency>
+          <groupId>commons-io</groupId>
+          <artifactId>commons-io</artifactId>
+          <version>2.0.1</version>
+        </dependency>
+
+        <!-- JDO -->
+        <dependency>
+            <groupId>org.apache.jdo</groupId>
+            <artifactId>jdo2-enhancer</artifactId>
+            <version>2.0-beta</version>
         </dependency>
 
 	</dependencies>
 
 
 	<pluginRepositories>
-
-        <pluginRepository>
-			<id>DataNucleus_2</id>
-			<url>http://www.datanucleus.org/downloads/maven2/</url>
-		</pluginRepository>
 
         <pluginRepository>
             <id>maven.java.net</id>
@@ -271,185 +275,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>org.datanucleus</groupId>
-				<artifactId>maven-datanucleus-plugin</artifactId>
-				<version>2.1.0-release</version>
-				<dependencies>
-					<dependency>
-						<groupId>org.datanucleus</groupId>
-						<artifactId>datanucleus-core</artifactId>
-						<version>2.2.3</version>
-
-						<scope>runtime</scope>
-					</dependency>
-					<dependency>
-						<groupId>org.datanucleus</groupId>
-						<artifactId>datanucleus-enhancer</artifactId>
-						<version>2.1.0-release</version>
-						<scope>runtime</scope>
-					</dependency>
-					<dependency>
-						<groupId>org.datanucleus</groupId>
-						<artifactId>datanucleus-rdbms</artifactId>
-						<version>2.1.0-release</version>
-						<scope>runtime</scope>
-						<optional>true</optional>
-					</dependency>
-
-					<dependency>
-						<groupId>org.datanucleus</groupId>
-						<artifactId>datanucleus-jpa</artifactId>
-						<version>2.1.6</version>
-						<scope>runtime</scope>
-						<optional>true</optional>
-					</dependency>
-				</dependencies>
-				<configuration>
-					<api>JPA</api>
-					<verbose>true</verbose>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>process-classes</phase>
-						<goals>
-							<goal>enhance</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-            <!-- Glassfish plugin -->
-<plugin>
-                <groupId>org.glassfish.maven.plugin</groupId>
-                <artifactId>maven-glassfish-plugin</artifactId>
-                <version>2.1</version>
-                <configuration>
-                    <glassfishDirectory>${glassfish.home}</glassfishDirectory>
-                    <!-- <user>${domain.username}</user>
-                    <adminPassword>${domain.password}</adminPassword>
-                    <passFile>path/to/asadmin/passfile</passFile> -->
-                    <autoCreate>true</autoCreate>
-                    <debug>true</debug>
-                    <echo>false</echo>
-                    <terse>true</terse>
-                    <!-- <skip>${test.int.skip}</skip> -->
-                    <domain>
-                        <name>${project.artifactId}</name>
-                        <adminPort>4848</adminPort>
-                        <httpPort>8080</httpPort>
-                        <httpsPort>8443</httpsPort>
-                        <iiopPort>3700</iiopPort>
-                        <jmsPort>7676</jmsPort>
-                        <reuse>false</reuse>
-                        <jvmOptions>
-                            <option>-Djava.security.auth.login.config=${project.build.testOutputDirectory}/login.conf</option>
-                        </jvmOptions>
-                        <properties>
-                            <property>
-                                <name>server.log-service.file</name>
-                                <value>${domain.log.dir}/server.log</value>
-                            </property>
-                        </properties>
-                        <auth>
-                            <realm>
-                                <name>testRealm</name>
-                                <className>com.sun.enterprise.security.auth.realm.file.FileRealm</className>
-                                <properties>
-                                    <property>
-                                        <name>jaas-context</name>
-                                        <value>test</value>
-                                    </property>
-                                    <property>
-                                        <name>file</name>
-                                        <value>${project.build.outputDirectory}/keyfile</value>
-                                    </property>
-                                </properties>
-                            </realm>
-                        </auth>
-                        <!-- <resourceDescriptor>path/to/resources.xml</resourceDescriptor> -->
-                        <resources>
-                            <connectionFactory>
-                                <jndiName>jms/testQueueConnectionFactory</jndiName>
-                                <type>queueConnectionFactory</type>
-                                <properties>
-                                    <property>
-                                        <name>UserName</name>
-                                        <value>guest</value>
-                                    </property>
-                                    <property>
-                                        <name>Password</name>
-                                        <value>guest</value>
-                                    </property>
-                                    <property>
-                                        <name>AddressList</name>
-                                        <value>localhost:7676</value>
-                                    </property>
-                                </properties>
-                            </connectionFactory>
-                            <jmsTopic>
-                                <jndiName>jms/testTopic</jndiName>
-                                <destinationName>TestTopic</destinationName>
-                                <connectionFactory>
-                                    <jndiName>jms/testTopicConnectionFactory</jndiName>
-                                    <properties>
-                                        <property>
-                                            <name>UserName</name>
-                                            <value>guest</value>
-                                        </property>
-                                        <property>
-                                            <name>Password</name>
-                                            <value>guest</value>
-                                        </property>
-                                        <property>
-                                            <name>AddressList</name>
-                                            <value>localhost:7676</value>
-                                        </property>
-                                    </properties>
-                                </connectionFactory>
-                            </jmsTopic>
-                            <jdbcDataSource>
-                                <name>SomeDS</name>
-                                <type>connectionPoolDataSource</type>
-                                <poolName>SomePool</poolName>
-                                <className>com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource</className>
-                                <description>Some JDBC Connection Pool</description>
-                                <allowNonComponentCallers>false</allowNonComponentCallers>
-                                <validateConnections>true</validateConnections>
-                                <validationMethod>metaData</validationMethod>
-                                <properties>
-                                    <property>
-                                        <name>portNumber</name>
-                                        <value>3306</value>
-                                    </property>
-                                    <property>
-                                        <name>password</name>
-                                        <value>somePassword</value>
-                                    </property>
-                                    <property>
-                                        <name>user</name>
-                                        <value>someUser</value>
-                                    </property>
-                                    <property>
-                                        <name>serverName</name>
-                                        <value>some.host.somewhere</value>
-                                    </property>
-                                    <property>
-                                        <name>databaseName</name>
-                                        <value>SomeDB</value>
-                                    </property>
-                                </properties>
-                            </jdbcDataSource>
-                        </resources>
-                    </domain>
-                    <components>
-                        <component>
-                            <name>${project.artifactId}</name>
-                            <artifact>${project.build.directory}/artifacts/${project.build.finalName}.war</artifact>
-                        </component>
-                    </components>
-                </configuration>
-            </plugin>
 
             <!-- Jetty plugin -->
             <plugin>
@@ -460,6 +285,7 @@
                             <scanIntervalSeconds>10</scanIntervalSeconds>
                             <stopKey>foo</stopKey>
                             <stopPort>9999</stopPort>
+                            <webApp>${basedir}/target/${artifactId}-${version}.war</webApp>
                     </configuration>
                     <executions>
                             <execution>

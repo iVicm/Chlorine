@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: geronimo-spec:geronimo-spec-jta:1.0.1B-rc2">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/geronimo-spec/geronimo-spec-jta/1.0.1B-rc2/geronimo-spec-jta-1.0.1B-rc2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/geronimo-spec/geronimo-spec-jta/1.0.1B-rc2/geronimo-spec-jta-1.0.1B-rc2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/geronimo-spec/geronimo-spec-jta/1.0.1B-rc2/geronimo-spec-jta-1.0.1B-rc2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
