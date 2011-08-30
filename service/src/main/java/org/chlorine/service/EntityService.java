@@ -1,14 +1,13 @@
 package org.chlorine.service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
+import org.chlorine.model.MyEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import org.chlorine.model.MyEntity;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @Service
 public class EntityService {

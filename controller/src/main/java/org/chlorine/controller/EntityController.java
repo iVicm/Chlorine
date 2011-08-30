@@ -1,7 +1,7 @@
 package org.chlorine.controller;
 
-import javax.inject.Inject;
-
+import org.chlorine.model.MyEntity;
+import org.chlorine.service.EntityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import org.chlorine.model.MyEntity;
-import org.chlorine.service.EntityService;
+import javax.inject.Inject;
 
 /**
  * Handles requests for the application home page.

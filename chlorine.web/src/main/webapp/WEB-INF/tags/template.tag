@@ -8,9 +8,9 @@
 	<title>Chlorine</title>
 	<link href="${pageContext.request.contextPath}/resources/layout.css" rel="stylesheet" type="text/css" />
 
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/extjs/resources/css/ext-all.css">
-    <script type="text/javascript" src="${pageContext.request.contextPath}/extjs/ext-all-debug.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/extjs/resources/css/ext-all.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/extjs/ext-all-debug.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/app.js"></script>
 </head>
 <body>
 		<jsp:doBody/>

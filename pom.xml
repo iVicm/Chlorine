@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.chlorine</groupId>
+    <version>1.0-SNAPSHOT</version>
+	<name>chlorine</name>
+	<artifactId>chlorine</artifactId>
+	<packaging>pom</packaging>
+	<description>
+		Chlorine is a extjs application with java backend developed to aid QA when using selenium tests
+		providing a way to create, configure projects and tests and run them against an environment 
+		potentially to multiple environments at the same time (paralellization).
+	</description>
+	
+	<modules>
+		<module>model</module>
+		<module>controller</module>
+		<module>service</module>
+		<module>store</module>
+		<module>chlorine.web</module>
+	</modules>
+
+	<properties>
+		<java-version>1.6</java-version>
+		<org.springframework-version>3.0.5.RELEASE</org.springframework-version>
+		<org.aspectj-version>1.6.9</org.aspectj-version>
+		<org.slf4j-version>1.6.1</org.slf4j-version>
+        <force.sdk.version>22.0.3-BETA</force.sdk.version>
+	</properties>
+	
+  <scm>
+    <connection>scm:git:git://github.com/eclipse-jorgelmo/chlorine</connection>
+    <developerConnection>scm:git:git://github.com/eclipse-jorgelmo/chlorine</developerConnection>
+  </scm>
+
+  <dependencies>
+  
+		<!-- Testing -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${org.slf4j-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${org.slf4j-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${org.slf4j-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.15</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.mail</groupId>
+					<artifactId>mail</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.jms</groupId>
+					<artifactId>jms</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jdmk</groupId>
+					<artifactId>jmxtools</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jmx</groupId>
+					<artifactId>jmxri</artifactId>
+				</exclusion>
+			</exclusions>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- @Inject -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+	
+	</dependencies>
+
+	<pluginRepositories>
+
+        <pluginRepository>
+            <id>maven.java.net</id>
+            <name>Java.net Maven2 Repository</name>
+            <url>http://download.java.net/maven/2</url>
+        </pluginRepository>
+
+	</pluginRepositories>
+
+    <developers>
+
+        <developer>
+            <id>trentcioran</id>
+            <name>Manuel Islas</name>
+            <timezone>-6</timezone>
+        </developer>
+
+        <developer>
+            <id>jorgelmo</id>
+            <name>Jorge Jacobo</name>
+            <timezone>-6</timezone>
+        </developer>
+
+    </developers>
+
+    <build>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>${java-version}</source>
+                    <target>${java-version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>2.7.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
