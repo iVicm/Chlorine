@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="chlorine.web:war">
+    <output-path>$PROJECT_DIR$/chlorine.web/target</output-path>
+    <root id="archive" name="chlorine.web-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="chlorine.web:war exploded" />
+    </root>
+  </artifact>
+</component>
