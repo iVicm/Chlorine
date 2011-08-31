@@ -3,11 +3,11 @@
  * Date: 8/20/11
  * Time: 4:16 PM
  */
-Ext.define('Chlorine.view.project.Edit', {
+Ext.define('Chlorine.view.approle.Edit', {
     extend: 'Ext.form.Panel',
-    alias : 'widget.projectedit',
+    alias : 'widget.approleedit',
 
-    title : 'Edit Project',
+    title : 'Edit Application Role',
     padding: '5 5 5 5',
     initComponent: function(){
         this.items = [{

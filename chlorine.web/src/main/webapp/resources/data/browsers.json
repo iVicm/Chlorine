@@ -1,0 +1,10 @@
+{
+    success:true,
+    browsers:[
+        {id: '1', name: 'Google Chrome', command: '*googlechrome'},
+        {id: '2', name: 'Firefox', command: '*firefox'},
+        {id: '3', name: 'Internet Explorer 7', command: '*piiexplore'},
+        {id: '4', name: 'Internet Explorer 8', command: '*piiexplore'},
+        {id: '5', name: 'Internet Explorer 9', command: '*piiexplore'}
+    ]
+}

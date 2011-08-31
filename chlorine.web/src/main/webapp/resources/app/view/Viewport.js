@@ -18,13 +18,14 @@ Ext.define('Chlorine.view.Viewport', {
                 collapsible: true,
                 layout: 'accordion',
                 items: [
-                    {xtype: 'projectlist'}
+                    {xtype: 'projectlist'},
+                    {xtype: 'userlist'},
+                    {xtype: 'remotecontrollist'}
                 ]
             },{
                 region: 'center',
                 margins: '5 0 5 5',
-                xtype:'panel',
-                title: 'Chlorine'
+                xtype:'tabpanel'
             }
         ]
     }

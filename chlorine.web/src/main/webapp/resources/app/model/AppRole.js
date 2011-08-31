@@ -3,20 +3,14 @@
  * Date: 8/20/11
  * Time: 4:26 PM
  */
-Ext.define('Chlorine.model.Project', {
+Ext.define('Chlorine.model.AppRole', {
     extend: 'Ext.data.Model',
     fields: [
         {name: 'id', type: 'string'},
         {name: 'name', type: 'string'}
     ],
-    hasMany:[
-        'Browser',
-        'Environment',
-        'Feature',
-        'Trigger',
-        'ProjectUser'
-    ],
     validations:[
+        {type: 'presence', field: 'id'},
         {type: 'presence', field: 'name'}
     ]
 });

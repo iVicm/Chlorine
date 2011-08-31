@@ -3,17 +3,17 @@
  * Date: 8/20/11
  * Time: 4:16 PM
  */
-Ext.define('Chlorine.view.project.Edit', {
+Ext.define('Chlorine.view.user.Edit', {
     extend: 'Ext.form.Panel',
-    alias : 'widget.projectedit',
+    alias : 'widget.useredit',
 
-    title : 'Edit Project',
+    title : 'Edit User',
     padding: '5 5 5 5',
     initComponent: function(){
         this.items = [{
             xtype: 'textfield',
-            name : 'name',
-            fieldLabel: 'Name',
+            name : 'username',
+            fieldLabel: 'Username',
             allowBlank: false
         }];
 

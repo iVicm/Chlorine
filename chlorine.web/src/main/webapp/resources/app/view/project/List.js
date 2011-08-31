@@ -4,16 +4,12 @@
  * Time: 4:08 PM
  */
 Ext.define('Chlorine.view.project.List' ,{
-    extend: 'Ext.grid.Panel',
+    extend: 'Chlorine.view.ListPanel',
     alias : 'widget.projectlist',
-
-    title : 'Projects',
     store: 'Projects',
-    initComponent: function() {
-        this.columns = [
-            {header: 'Name',  dataIndex: 'name',  flex: 1}
-        ];
+    title : 'Projects',
 
+    initComponent: function() {
         this.callParent(arguments);
     }
 });

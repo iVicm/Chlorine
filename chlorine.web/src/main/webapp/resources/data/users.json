@@ -1,0 +1,8 @@
+{
+    success: true,
+    users:[
+        {id: '1', username: 'jmislas'},
+        {id: '2', username: 'jjacobo'},
+        {id: '3', username: 'cestrada'}
+    ]
+}

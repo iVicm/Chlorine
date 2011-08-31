@@ -1,21 +1,20 @@
 /**
  * User: Eclipse
- * Date: 8/20/11
- * Time: 4:24 PM
+ * Date: 8/28/11
+ * Time: 10:43 PM
  */
-Ext.define('Chlorine.store.Projects', {
+Ext.define('Chlorine.store.AppRoles',{
     extend: 'Ext.data.Store',
-    model: 'Chlorine.model.Project',
-    autoLoad: true,
+    model: 'Chlorine.model.AppRole',
     proxy: {
         type: 'ajax',
         api: {
-            read: 'data/projects.json',
+            read: 'data/appRoles.json',
             update: 'data/update.json'
         },
-        reader: {
+        reader:{
             type: 'json',
-            root: 'projects',
+            root: 'appRoles',
             successProperty: 'success'
         }
     }
