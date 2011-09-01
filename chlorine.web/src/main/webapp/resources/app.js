@@ -8,7 +8,7 @@ Ext.onReady(function(){
 });
 Ext.application({
     name: 'Chlorine',
-    appFolder: 'app',
+    appFolder: 'resources/app',
     autoCreateViewport: true,
     controllers: [
         'Projects',
