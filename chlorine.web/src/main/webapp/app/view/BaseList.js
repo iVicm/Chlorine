@@ -15,7 +15,8 @@ Ext.define('Chlorine.view.BaseList', {
 
     layout: 'fit',
     multiSelect: true,
-    //autoLoadStore: false,
+    autoLoadStore: false,
+    isForForm: false,
 
     initComponent: function() {
         this.items = [{
@@ -35,9 +36,11 @@ Ext.define('Chlorine.view.BaseList', {
             tooltip: 'Reload',
             action: 'reload'
         }];
-		var tbar = this.getToolbarCfg();
-        if(tbar && tbar.length > 0){
-            this.tbar = this.createToolbar(tbar);
+        if(!this.isForForm){
+            var tbar = this.getToolbarCfg();
+            if(tbar && tbar.length > 0){
+                this.tbar = this.createToolbar(tbar);
+            }
         }
         this.on('afterrender',function(panel){
             if(panel.autoLoadStore){

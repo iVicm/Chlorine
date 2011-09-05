@@ -8,12 +8,12 @@
 <head>
     <title>Chlorine</title>
 
-    <link rel="stylesheet" type="text/css" href="resources/extjs/resources/css/ext-all.css">
-    <script type="text/javascript" src="resources/extjs/ext-all-debug.js"></script>
+    <link rel="stylesheet" type="text/css" href="extjs/resources/css/ext-all.css">
+    <script type="text/javascript" src="extjs/ext-all-debug.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="resources/resources/css/chlorine.css">
-    <link rel="stylesheet" type="text/css" href="resources/resources/css/buttons.css">
-    <script type="text/javascript" src="resources/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="resources/css/chlorine.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/buttons.css">
+    <script type="text/javascript" src="app.js"></script>
 </head>
 <body></body>
 </html>

@@ -25,7 +25,9 @@ Ext.define('Chlorine.view.controller.Edit', {
         }, {
 			xtype: 'browserlist',
             autoLoadStore: true,
-            height: 150
+            isForForm: true,
+            height: 150,
+            width: '50%'
 		}];
         this.callParent(arguments);
     }

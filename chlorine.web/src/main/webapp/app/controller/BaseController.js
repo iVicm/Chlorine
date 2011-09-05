@@ -69,6 +69,9 @@ Ext.define('Chlorine.controller.BaseController', {
             }
             return;
         }
+        if(view.up('baselist').isForForm){
+            return;
+        }
         var form = this.getForm(record);
 		var title = this.getTitle(record);
         form.setTitle(title);
