@@ -6,6 +6,7 @@
 Ext.define('Chlorine.view.Viewport', {
     extend: 'Ext.container.Viewport',
     layout: 'fit',
+	requires: ['Chlorine.view.HomePanel'],
     items:{
         xtype: 'panel',
         layout: 'border',
@@ -17,15 +18,20 @@ Ext.define('Chlorine.view.Viewport', {
                 width: 200,
                 collapsible: true,
                 layout: 'accordion',
+				defaults:{hideCollapseTool: true},
                 items: [
-                    {xtype: 'projectlist'},
-                    {xtype: 'userlist'},
-                    {xtype: 'remotecontrollist'}
+                    {xtype: 'userlist', autoLoadStore: true},
+                    {xtype: 'browserlist'},
+					{xtype: 'controllerlist'}
                 ]
             },{
                 region: 'center',
                 margins: '5 0 5 5',
-                xtype:'tabpanel'
+                xtype:'tabpanel',
+                name: 'content-tab-panel',
+				items: [
+                    {xtype: 'homepanel'}
+                ]
             }
         ]
     }

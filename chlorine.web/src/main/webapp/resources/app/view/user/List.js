@@ -4,9 +4,10 @@
  * Time: 4:08 PM
  */
 Ext.define('Chlorine.view.user.List' ,{
-    extend: 'Chlorine.view.ListPanel',
+    extend: 'Chlorine.view.BaseList',
     alias : 'widget.userlist',
     store: 'Users',
     title : 'Users',
-    listTpl:'<tpl for="."><div class="chlorine-view-list-item">{username}</div></tpl>'
+    listItemContent: '{username}',
+    iconCls: 'user-panel'
 });

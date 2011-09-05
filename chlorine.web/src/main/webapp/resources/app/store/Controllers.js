@@ -3,18 +3,18 @@
  * Date: 8/20/11
  * Time: 4:24 PM
  */
-Ext.define('Chlorine.store.Browsers', {
+Ext.define('Chlorine.store.Controllers', {
     extend: 'Ext.data.Store',
-    model: 'Chlorine.model.Browser',
+    model: 'Chlorine.model.Controller',
     proxy: {
         type: 'ajax',
         api: {
-            read: 'data/browsers.json',
+            read: 'data/controllers.json',
             update: 'data/update.json'
         },
         reader: {
             type: 'json',
-            root: 'browsers',
+            root: 'controllers',
             successProperty: 'success'
         }
     }

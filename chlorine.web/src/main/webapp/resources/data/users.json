@@ -3,6 +3,9 @@
     users:[
         {id: '1', username: 'jmislas'},
         {id: '2', username: 'jjacobo'},
-        {id: '3', username: 'cestrada'}
+        {id: '3', username: 'cestrada'},
+        {id: '4', username: 'gzapien'},
+        {id: '5', username: 'frios'},
+        {id: '6', username: 'eherrera'}
     ]
 }

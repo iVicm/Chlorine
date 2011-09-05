@@ -1,9 +1,8 @@
 .chlorine-view-list {
-    padding: 0 3px 0 3px;
+    border: solid 1px #99BCE8;
 }
 
 .chlorine-view-list-item {
-    margin-top: 1px;
     font-size: 11px;
     line-height: 20px;
     cursor: pointer;

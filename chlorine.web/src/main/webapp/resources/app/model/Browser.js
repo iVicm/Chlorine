@@ -1,18 +1,18 @@
 /**
  * User: Eclipse
- * Date: 8/25/11
- * Time: 11:16 PM
+ * Date: 8/20/11
+ * Time: 4:26 PM
  */
-Ext.define('Chlorine.model.Browser',{
+Ext.define('Chlorine.model.Browser', {
     extend: 'Ext.data.Model',
-    fields:[
+	idgen: 'uuid',
+    fields: [
         {name: 'id', type: 'string'},
         {name: 'name', type: 'string'},
-        {name: 'command', type: 'string'}
+        {name: 'version', type: 'number', defaultValue: 1.0}
     ],
     validations:[
-        {type: 'presence', field :'id'},
-        {type: 'presence', field :'name'},
-        {type: 'presence', field :'command'}
+        {type: 'presence',  field: 'name'},
+        {type: 'presence',  field: 'version'}
     ]
 });

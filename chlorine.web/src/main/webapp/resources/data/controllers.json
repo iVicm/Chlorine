@@ -1,0 +1,8 @@
+{
+    success:true,
+    controllers:[
+        {id: '1', host: '10.16.0.91', port: 4444},
+        {id: '2', host: '10.16.0.100', port: 4444},
+        {id: '3', host: 'swc17', port: 4445}
+    ]
+}
