@@ -1,9 +1,9 @@
 package org.chlorine.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
 
@@ -33,7 +33,9 @@ public class User extends SimpleAudit {
 
     private String username;
     private String password;
+    private Role role;
 
+    @NotNull
     public String getUsername() {
         return username;
     }
@@ -42,6 +44,7 @@ public class User extends SimpleAudit {
         this.username = username;
     }
 
+    @NotNull
     public String getPassword() {
         return password;
     }
@@ -49,4 +52,15 @@ public class User extends SimpleAudit {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @ManyToOne
+    @NotNull
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }
+

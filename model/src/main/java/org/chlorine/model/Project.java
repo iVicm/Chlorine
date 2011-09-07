@@ -2,6 +2,7 @@ package org.chlorine.model;
 
 import javax.persistence.*;
 import javax.security.auth.callback.LanguageCallback;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -37,6 +38,7 @@ public class Project extends SimpleAudit {
     private Set<Feature> features = new HashSet<Feature>();
     private Set<VcsRoot> vcsRoots = new HashSet<VcsRoot>();
 
+    @NotNull
     public String getName() {
         return name;
     }
@@ -45,6 +47,7 @@ public class Project extends SimpleAudit {
         this.name = name;
     }
 
+    @NotNull
     public String getDescription() {
         return description;
     }

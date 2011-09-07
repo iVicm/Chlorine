@@ -11,6 +11,8 @@
         <class>org.chlorine.model.UserStory</class>
         <class>org.chlorine.model.TestCase</class>
         <class>org.chlorine.model.User</class>
+        <class>org.chlorine.model.Role</class>
+        <class>org.chlorine.model.Privilege</class>
 
 		<properties>
 

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 /**
 
@@ -36,6 +37,7 @@ public class VcsRoot extends SimpleAudit {
     private String username;
     private String password;
 
+    @NotNull
     public String getName() {
         return name;
     }
@@ -44,6 +46,7 @@ public class VcsRoot extends SimpleAudit {
         this.name = name;
     }
 
+    @NotNull
     public String getUrl() {
         return url;
     }

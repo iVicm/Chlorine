@@ -51,6 +51,7 @@ public class TestCase extends SimpleAudit {
         this.runDt = runDt;
     }
 
+    @Enumerated(EnumType.ORDINAL)
     public Language getLanguage() {
         return language;
     }

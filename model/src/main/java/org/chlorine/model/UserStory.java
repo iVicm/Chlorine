@@ -1,6 +1,7 @@
 package org.chlorine.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,6 +35,7 @@ public class UserStory extends SimpleAudit {
     private String description;
     private Set<TestCase> testCases = new HashSet<TestCase>();
 
+    @NotNull
     public String getName() {
         return name;
     }
@@ -42,6 +44,7 @@ public class UserStory extends SimpleAudit {
         this.name = name;
     }
 
+    @NotNull
     public String getDescription() {
         return description;
     }
