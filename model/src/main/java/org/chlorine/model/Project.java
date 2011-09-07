@@ -27,7 +27,6 @@ import java.util.Set;
  CreatedBy: trentcioran
  Date: 31/08/11
  Time: 09:07 PM
- To change this template use File | Settings | File Templates.
 */
 
 @Entity
@@ -65,7 +64,7 @@ public class Project extends SimpleAudit {
         this.description = description;
     }
 
-    @OneToMany
+    @OneToMany(orphanRemoval = true, cascade = { CascadeType.ALL })
     public Set<Feature> getFeatures() {
         return features;
     }
@@ -74,7 +73,7 @@ public class Project extends SimpleAudit {
         this.features = features;
     }
 
-    @OneToMany
+    @OneToMany(orphanRemoval = true, cascade = { CascadeType.ALL })
     public Set<VcsRoot> getVcsRoots() {
         return vcsRoots;
     }

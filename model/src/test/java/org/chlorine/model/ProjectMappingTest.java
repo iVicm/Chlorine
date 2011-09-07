@@ -44,8 +44,79 @@ public class ProjectMappingTest {
     @Test
     @Transactional
     public void testMapping() {
-        String projectName = "My project";
-        String description = "This is a test project";
+        Project project = createProject();
+
+        org.junit.Assert.assertTrue("Project id is zero.", project.getId() > 0);
+        Project saved = entityManager.find(Project.class, project.getId());
+
+        org.junit.Assert.assertEquals(project.getId(), saved.getId());
+        org.junit.Assert.assertEquals(project.getName(), saved.getName());
+        org.junit.Assert.assertEquals(project.getDescription(), saved.getDescription());
+    }
+
+    @Test
+    @Transactional
+    public void testFeaturesAssociationAdd() {
+        Project project = createProject();
+
+        project.getFeatures().add(createFeature());
+
+        entityManager.persist(project);
+        entityManager.flush();
+
+        Project saved = entityManager.find(Project.class, project.getId());
+        org.junit.Assert.assertTrue(saved.getFeatures().size() == 1);
+    }
+
+    @Test
+    @Transactional
+    public void testFeaturesAssociationUpdate() {
+        final String updateValue = "updated feature";
+
+        Project project = createProjectWithFeatures();
+        Feature toUpdate = project.getFeatures().iterator().next();
+        toUpdate.setName(updateValue);
+
+        entityManager.persist(project);
+        entityManager.flush();
+
+        Project saved = entityManager.find(Project.class, project.getId());
+        org.junit.Assert.assertTrue(saved.getFeatures().size() == 1);
+        org.junit.Assert.assertTrue(saved.getFeatures().iterator().next().getName().equals(updateValue));
+    }
+
+    @Test
+    @Transactional
+    public void testFeaturesAssociationDelete() {
+        Project project = createProjectWithFeatures();
+        Feature toRemove = project.getFeatures().iterator().next();
+
+        project.getFeatures().remove(toRemove);
+
+        entityManager.persist(project);
+        entityManager.flush();
+
+        Project saved = entityManager.find(Project.class, project.getId());
+        org.junit.Assert.assertTrue(saved.getFeatures().size() == 0);
+    }
+
+    @Test
+    @Transactional
+    public void testVcsRootsAssociationAdd() {
+        Project project = createProject();
+
+        project.getVcsRoots().add(createVcsRoot());
+
+        entityManager.persist(project);
+        entityManager.flush();
+
+        Project saved = entityManager.find(Project.class, project.getId());
+        org.junit.Assert.assertTrue(saved.getVcsRoots().size() == 1);
+    }
+
+    protected Project createProject() {
+        final String projectName = "My project";
+        final String description = "This is a test project";
 
         Project project = new Project();
         project.setName(projectName);
@@ -54,11 +125,33 @@ public class ProjectMappingTest {
         entityManager.persist(project);
         entityManager.flush();
 
-        org.junit.Assert.assertTrue("Project id is zero.", project.getId() > 0);
-        Project saved = entityManager.find(Project.class, project.getId());
+        return project;
+    }
 
-        org.junit.Assert.assertEquals(project.getId(), saved.getId());
-        org.junit.Assert.assertEquals(project.getName(), saved.getName());
-        org.junit.Assert.assertEquals(project.getDescription(), saved.getDescription());
+    protected Feature createFeature() {
+        Feature feature1 = new Feature();
+        feature1.setName("test feature");
+        feature1.setDescription("feature description");
+
+        return feature1;
+    }
+
+    protected Project createProjectWithFeatures() {
+        Project project = createProject();
+
+        project.getFeatures().add(createFeature());
+
+        entityManager.persist(project);
+        entityManager.flush();
+
+        return project;
+    }
+
+    protected VcsRoot createVcsRoot() {
+        VcsRoot root = new VcsRoot();
+        root.setName("default vcs root");
+        root.setUrl("some url");
+
+        return root;
     }
 }
