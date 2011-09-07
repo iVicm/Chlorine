@@ -31,19 +31,8 @@ import javax.persistence.Id;
 @Entity
 public class User extends SimpleAudit {
 
-    private int id;
     private String username;
     private String password;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;

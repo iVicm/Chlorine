@@ -30,20 +30,9 @@ import java.util.Set;
 @Entity
 public class Feature extends SimpleAudit {
 
-    private int id;
     private String name;
     private String description;
     private Set<UserStory> userStories = new HashSet<UserStory>();
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

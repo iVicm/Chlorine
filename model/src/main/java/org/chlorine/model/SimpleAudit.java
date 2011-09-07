@@ -1,6 +1,7 @@
 package org.chlorine.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -26,7 +27,8 @@ import java.util.Date;
  Time: 09:07 PM
 */
 
-public class SimpleAudit {
+@MappedSuperclass
+public abstract class SimpleAudit {
 
     private int id;
     private Date createDt;
@@ -47,6 +49,7 @@ public class SimpleAudit {
         this.id = id;
     }
 
+    @NotNull
     public Date getCreateDt() {
         return createDt;
     }
@@ -56,6 +59,7 @@ public class SimpleAudit {
     }
 
     @ManyToOne
+    @NotNull
     public User getCreateUser() {
         return createUser;
     }
@@ -64,6 +68,7 @@ public class SimpleAudit {
         this.createUser = createUser;
     }
 
+    @NotNull
     public Date getUpdateDt() {
         return updateDt;
     }
@@ -73,6 +78,7 @@ public class SimpleAudit {
     }
 
     @ManyToOne
+    @NotNull
     public User getUpdateUser() {
         return updateUser;
     }
@@ -98,6 +104,7 @@ public class SimpleAudit {
         this.deleteUser = deleteUser;
     }
 
+    @NotNull
     public boolean isDeleted() {
         return deleted;
     }

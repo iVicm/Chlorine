@@ -6,8 +6,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import java.util.Date;
 
 /**
  * Chlorine Project.
@@ -32,14 +31,7 @@ import javax.persistence.PersistenceContext;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:/applicationContext.xml"})
-public class ProjectMappingTest {
-
-    protected EntityManager entityManager;
-
-    @PersistenceContext
-    public void setEntityManager(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+public class ProjectMappingTest extends FixtureBase {
 
     @Test
     @Transactional
@@ -121,6 +113,7 @@ public class ProjectMappingTest {
         Project project = new Project();
         project.setName(projectName);
         project.setDescription(description);
+        fillSimpleAudit(project);
 
         entityManager.persist(project);
         entityManager.flush();
@@ -132,6 +125,7 @@ public class ProjectMappingTest {
         Feature feature1 = new Feature();
         feature1.setName("test feature");
         feature1.setDescription("feature description");
+        fillSimpleAudit(feature1);
 
         return feature1;
     }
@@ -151,7 +145,16 @@ public class ProjectMappingTest {
         VcsRoot root = new VcsRoot();
         root.setName("default vcs root");
         root.setUrl("some url");
+        fillSimpleAudit(root);
 
         return root;
     }
+
+    protected void fillSimpleAudit(SimpleAudit sa) {
+        sa.setCreateDt(new Date());
+        sa.setCreateUser(user);
+        sa.setUpdateDt(new Date());
+        sa.setUpdateUser(user);
+    }
 }
+

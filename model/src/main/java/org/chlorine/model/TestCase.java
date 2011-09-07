@@ -29,22 +29,11 @@ import java.util.Date;
 @Entity
 public class TestCase extends SimpleAudit {
 
-    private int id;
     private String name;
     private Date runDt;
     private Language language;
     private User runUser;
     private boolean lastResult;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

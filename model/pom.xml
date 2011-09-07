@@ -14,6 +14,20 @@
 
 	<dependencies>
 
+        <!-- DataSource -->
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.4</version>
+        </dependency>
+
+        <!-- JSR 303 Bean Validation -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>4.2.0.Final</version>
+        </dependency>
+
         <!-- DB - Hibernate -->
         <dependency>
             <groupId>org.springframework</groupId>
