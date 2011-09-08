@@ -1,9 +1,7 @@
 package org.chlorine.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.HashSet;
-import java.util.Set;
+import java.io.Serializable;
 
 /**
 
@@ -25,52 +23,44 @@ import java.util.Set;
 
  CreatedBy: trentcioran
  Date: 07/09/11
- Time: 09:07 PM
+ Time: 11:24 PM
 */
-
 @Entity
-public class User extends SimpleAudit {
-
-    private String username;
-    private String password;
+@IdClass(ProjectAssignmentId.class)
+public class ProjectAssignment {
+    private User user;
+    private Project project;
     private Role role;
-    private Set<ProjectAssignment> projects = new HashSet<ProjectAssignment>();
 
-    @NotNull
-    public String getUsername() {
-        return username;
+    @Id
+    @ManyToOne
+    @JoinColumn
+    public User getUser() {
+        return user;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    @NotNull
-    public String getPassword() {
-        return password;
+    @Id
+    @ManyToOne
+    @JoinColumn
+    public Project getProject() {
+        return project;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     @ManyToOne
-    @NotNull
     public Role getRole() {
         return role;
     }
 
     public void setRole(Role role) {
         this.role = role;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY)
-    public Set<ProjectAssignment> getProjects() {
-        return projects;
-    }
-
-    public void setProjects(Set<ProjectAssignment> projects) {
-        this.projects = projects;
     }
 }
 

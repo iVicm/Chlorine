@@ -26,47 +26,14 @@ import java.util.Date;
  Date: 07/09/11
  Time: 09:07 PM
 */
-
 @MappedSuperclass
-public abstract class SimpleAudit {
+public abstract class SimpleAudit extends EntityBase {
 
-    private int id;
-    private Date createDt;
-    private User createUser;
     private Date updateDt;
     private User updateUser;
     private Date deleteDt;
     private User deleteUser;
     private boolean deleted;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    @NotNull
-    public Date getCreateDt() {
-        return createDt;
-    }
-
-    public void setCreateDt(Date createDt) {
-        this.createDt = createDt;
-    }
-
-    @ManyToOne
-    @NotNull
-    public User getCreateUser() {
-        return createUser;
-    }
-
-    public void setCreateUser(User createUser) {
-        this.createUser = createUser;
-    }
 
     @NotNull
     public Date getUpdateDt() {
